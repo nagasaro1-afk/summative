@@ -1,0 +1,315 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+    margin:0;
+    line-height:1.5;
+}
+
+.skip-link{
+    position: absolute;
+    left: -999px;
+    top:0;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+
+header{
+    background-color: #1f3a5f;
+    color: white;
+    padding: 10px 16px;
+}
+
+header h1 { 
+    margin: 0 0 8px 0;
+    font-size: 22px;
+}
+
+nav ul { 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+nav a{
+    color: white;
+}
+
+main{
+    padding: 16px;
+}
+
+section{
+    background-color: white;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+}
+
+h2{
+    margin-top: 0;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+ outline: 3px solid #ff91800;
+ outline-offset: 2px
+}
+
+.field{
+    margin-bottom: 12px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="file"],
+select{
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #777;
+    border-radius: 4px;
+}
+
+.checkbox label {
+    display: inline
+}
+
+.error{
+    color: #b00020;
+    font-size: 14px;
+    display: block;
+}
+
+button{
+    background-color: #1f3a5f;
+    color: white;
+    border:none;
+    padding: 8px 14px;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+background-color: #2f6db5;
+}
+
+.delete-btn{
+    background-color: #a10000;
+}
+
+#status { 
+    font-weight: bold;
+    color: #1f3a5f;
+    min-height: 24px;
+}
+
+
+.stat-box h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+
+,stat-ox p{
+    margin: 4px 0 0 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.over {
+    color: #b00020;
+    font-weight: bold;
+}
+
+.trend {
+    display: flex;
+    gap: 6px;
+    align-items: flex-end;
+    height: 150px;
+}
+
+
+.trend col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+    font-size: 12px;
+    height: 100%;
+}
+
+
+.bar {
+    background-color: #2f6db5;
+    width: 100%;
+    min-height: 2px;
+    transition: height 0.5s;
+}
+
+
+table,
+thead,
+tbody,
+tr,
+td{
+    display: block;
+}
+
+
+thead {
+    display: none;
+}
+
+
+tr {
+    border: 1px solid #bbb;
+    margin-bottom: 10 px; 
+    padding: 8px;
+    border-radius: 4px;
+    animation: fadein 0.5s;
+}
+
+
+td {
+    padding: 4px 0;
+}
+
+
+td::before {
+    content: attr(data-label) ":";
+    font-weight: bold;
+}
+
+
+td input{ 
+    width: 100%;
+    padding: 4px;
+    font-size: 15px;
+}
+
+mark{
+    background-color: yellow;
+    color: black;
+}
+
+@keyframes fadein {
+    from{ 
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+footer{ 
+    text-align: 16px;
+    padding: 16px;
+    font-size: 14px;
+}
+
+
+@media (min-width: 768px) {
+    .stats { 
+        dispaly: flex;
+        gap:10px;
+    }
+ 
+    .statbox {
+        flex: 1;
+    }
+
+    .controls{ 
+        display:flex;
+        gap: 16px;
+        align-items: flex-end;
+    }
+ .controls .field:first-child {
+    flex: 1;
+ }
+
+ table {
+    display: table;
+    width:100%;
+    border-collapse: collapse;
+ }
+  thead{
+    display: table-head-group;
+  }
+
+  tbody{
+    dispaly: table-row-group;
+  }
+
+  tr{
+    display: table-row;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+th,
+td {
+    display:table-cell;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+td::before {
+    content: none;
+}
+}
+
+@media (min-width:1024px) {
+    main{ 
+        max-width:1000px;
+        margin: 0 auto;
+    }
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1{
+        margin: 0;
+    }
+
+
+    #record-form{
+        dispaly: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 16px;
+    }
+
+#record-form button {
+    grid-columns: 1 / 3;
+}
+
+}
+
