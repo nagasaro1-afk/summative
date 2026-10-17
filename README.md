@@ -6,6 +6,11 @@
 
 Made by Agasaro Nicia Greta - GitHub: nagasaro1-afk - n.agasaro1@alustudent.com
 
+
+## WHAT THE APP DOES
+It's a spending tracker for students.You add what you spent(description,amount,category,date),and it saves everything in your browser.You can search your records with regex,sort them,edit and delete them,and see totals on a dashboard.You can also set a spending cap,switch the displayed amounts to EUR TO RWF,and export or import your data as a JSON file
+
+
 ## FEATURES
 - About, Dashboard, Add Record form ,Records table and Settings sections
 - Add, inline edit and delete records (with confirm on delete)
@@ -36,7 +41,7 @@ Search examples: '\.\d{2}\b` (cents), `(coffee|tea)`, `\b(\w+)\s+\1\b`
 - First Tab on the page: "Skip to content" link
 - Arrow keys: change the value in the sort dropdown
 
-## Accessibility notes
+## Accesibility notes
 - Semantic landmarks: header, nav, main, section, footer
 - Every input has a label, focus is visile (orange outline)
 - Status messages use role="status", cap messages use aria-live
