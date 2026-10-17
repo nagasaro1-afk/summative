@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests</title>
+</head>
+<body>
+    <h1>Small Tets</h1>
+    <ul id="results"></ul>
+
+    <script type="module">
+        import { rules, validateFields, hasErrors } from "./scripts/validators.js";
+        import { compileRegex, highlight } from "./scripts/search.js";
+
+        const results = document.querySelector("#results");
+
+        function check(name, condition) {
+            const li = document.createElement("li");
+            li.textContent = (condition ? "PASS: " : "FAIL: ") + name;
+            results.appendchild(li);
+        }
+
+        check("description ok", rules.description.test("Bus pass"));
+        check("description with leading space fails", !rules.desciption.test(" Bus pass"));
+        check("description with trailing space fails", !rules.description.test("Bus pass "));
+
+        check("amount 12.50 ok", rules.amount.test("12.50"));
+        check("amount 0 ok", rules.amount.test("0"));
+        check("amount 012 fails",!rules.amount.test("012"));
+        check("amount 1.234 fails", !rules.amount.test("1.234"));
+
+        check("date 2026-10-12 ok", rules.date.test("2026-10-12"));
+        check("date 2026-13-01 fails", !rules,date.test("2026-13-01"));
+        check("date 2026=10-32 fails", !rules.date.test("2026-10-32"));
+
+        check("category 'Food'ok", rules.category.test("Food"));
+        check("category 'Fast-food place' ok", rules.category.test("Fast-food place"));
+        check("category 'Food2' fails", !rules.category.test("Food2"));
+
+
+        check("duplicate word found", rules.duplicateWord.test("test the book"));
+        check("no duplicate word", !rules.duplicateWord.test("test the book"));
+
+
+        const good = validateFields({ description: "Lunch", amount: "5", category: "Food", date: "2026-10-12"});
+        check("good record has no errors", !hasErrors(good));
+        const bad = validateFields({ description: "", amount: "abc", category: "1", date: "x"});
+        check("bad record has errors", hasErors(bad));
+
+
+        check("broken regex given null", compileRegex("(abc", true) === null);
+        check("empty search gives null", compileRegex("", true)=== null);
+        check("highlight wraps match", highlight("abc", compileRegex("b,true")) === "a<mark>b</mark>c");
+        check("highlight escapes html", highlight("<b>", null) === "&lt;b&gt:");
+    </script>
+
+</body>
+</html>
