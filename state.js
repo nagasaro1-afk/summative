@@ -9,7 +9,7 @@ export const defaultSettings = {
 
 export const state = {
     records: [],
-    settings:JSON.parse(JSON.stringify(defaultsettings )),
+    settings:JSON.parse(JSON.stringify(defaultSettings )),
     editingId: null
 };
 
@@ -25,7 +25,7 @@ export function startState(records) {
     function makeId() {
         let biggest = 0;
         for(const r of state.records) {
-            const num = parseInt(r.Id.replace("txn_", ""),10);
+            const num = parseInt(r.id.replace("txn_", ""),10);
             if (num > biggest) {
                 biggest = num;
             }
@@ -56,7 +56,7 @@ export function startState(records) {
                 r.amount = parseFloat(values.amount);
                 r.category = values.category;
                 r.date = values.date;
-                r.updatedAt = new date().toISOString();
+                r.updatedAt = new Date().toISOString();
             }
         }
         saveRecords(state.records);
@@ -75,8 +75,8 @@ export function startState(records) {
         saveRecords(state.records);
     }
 
-    export function updatesettings(newsettings) {
-        state.settings = newsettings;
+    export function updateSettings(newSettings) {
+        state.settings = newSettings;
         saveSettings(state.settings);
     }
 

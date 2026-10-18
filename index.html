@@ -19,6 +19,7 @@
            <li><a href="#settings">Settings</a></li>
         </ul>
     </nav>
+    <button type="button" id="theme-btn">Dark mode</button>
   </header> 
 
   <main id="main">
@@ -51,7 +52,7 @@
             </div>
             </div>
 
-           <p id="cap-polite"aria-live="polite"></p>
+           <p id="cap-polite" aria-live="polite"></p>
            <p id="cap-alert" class="over" role="alert" aria-live="assertive"></p> 
            <h3>Last 7 days</h3>
            <div id="trend" class="trend"></div>
@@ -63,11 +64,27 @@
     <div class="field">
     <label for="description">Description</label>
     <input type="text" id="description" autocomplete="off" aria-describedby="description-error">
-<span class="error" id="description-error"></span>
+    <span class="error" id="description-error"></span>
+</div>
+
+
+<div class="field">
+    <label for="amount">Amount (USD)</label>
+    <input type="text" id="amount" inputmode="decimal" autocomplete="off" aria-describedby="amount-error">
+    <span class="error" id="amount-error"></span>
+
 </div>
 
 <div class="field">
- <label for="date">Date (YYY-MM-DD)</label>
+ <label for="category">Category</label>
+<input type="text" id="category" list="category-list" autocomplete="off" aria-describedby="category-error">
+<datalist id="category-list"></datalist>
+<span class="error" id="category-error"></span>
+</div>
+
+
+<div class="field">
+ <label for="date">Date (YYYY-MM-DD)</label>
  <input type="text" id="date" placeholder="2026-10-12" autocomplete="off" aria-describedby="date-error">
  <span class="error" id="date-error"></span>
  </div>
@@ -75,21 +92,6 @@
  <button type="submit">Add record</button>
  </form>
  </section>
-
- <section id="records">
-    <h2>Records</h2>
-
-    <div class="controls">
-        <div class="field">
-        <label for="search">Search (regex)</label>
-        <input type="text" id="search" placeholder="e.g (coffee|tea)" autocomplete="off">
-        <span class="error" id="search-error"></span>
-        </div>
-
-
-    <button type="submit">Add record</button>
-    </form>
-  </section>
 
 
   <section id="records">
@@ -118,7 +120,7 @@
     <input type="checkbox" id="ignore-case" checked>
     <label for="ignore-case">Ignore case</label>
     </div>
-
+</div>
     <div class="table-wrap">
         <table>
             <thead>
@@ -126,25 +128,26 @@
               <th scope="col">Date</th> 
               <th scope="col">Description</th>  
               <th scope="col">Category</th>  
-              <th scope="col">Amount(USD)</th>  
+              <th scope="col">Amount (USD)</th>  
               <th scope="col" id="converted-head">Converted</th>  
               <th scope="col">Actions</th>  
                 </tr>
             </thead>
             <tbody id="records-body"></tbody>
         </table>
-</div>
+        </div>
+
 </section>
 <section id="settings"> 
 <h2>Settings</h2>
-<form id="settings-form"novalidate>
+<form id="settings-form" novalidate>
     <div class="field">
         <label for="cap">Spending cap (USD)</label>
 <input type="text" id="cap" autocomplete="off">
 </div>
 
 <div class="field">
-    <label for="dispaly-currency">Show converted amounts in</label>
+    <label for="display-currency">Show converted amounts in</label>
     <select id="display-currency"> 
 <option value="USD">USD</option>
 <option value="EUR">EUR</option>
@@ -153,9 +156,20 @@
 </div>
 
 <div class="field">
-    <label for="settings-categories">Categories (separate with commmas)</label>
+    <label for="settings-categories">Categories (separate with commas)</label>
     <input type="text" id="settings-categories" autocomplete="off">
 </div>
+
+
+<div class=""field">
+    <label for="rate-eur">1 USD in EUR</label>
+    <input type="text" id="rate-eur" autocomplete="off">
+    </div>
+
+    <div class="fields">
+        <label  for="rate-rwf">1 USD in RWF</label>
+        <input type="text" id="rate-rwf" autocomplete="off">
+        </div>
 
 <p id="settings-error" class="error" role="alert"></p>
 <button type="submit">Save settings</button>
@@ -165,7 +179,7 @@
 <button type="button" id="export-btn">Export JSON</button>
 <div class="field">
     <label for="import-file">Import JSON file</label>
-<input type="file" id="import-file" accept=" .json,application/json">
+<input type="file" id="import-file" accept=".json,application/json">
 </div>
 </section>
 </main>
@@ -174,6 +188,7 @@
     <p>Student Finance Tracker </p>
 </footer> 
 
-<script type="module" src="script.js"></script>
+<script type="module" src="main.js"></script>
+<script type="module" src="theme.js"></script>
 </body>
 </html>

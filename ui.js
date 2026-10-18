@@ -18,21 +18,36 @@ function normalRow(rec, re) {
 return `
 <td data-label="Date">${highlight(rec.date, re)}</td>
 <td data-label="Description">${highlight(rec.description, re)}</td>
-<td data-label="Categoty">${highlight(rec.category, re)}</td>
+<td data-label="Category">${highlight(rec.category, re)}</td>
 <td data-label="Amount (USD)">${highlight(rec.amount.toFixed(2), re)}</td>
-<td data-label="Converted">${converted}${code}</td>
+<td data-label="Converted">${converted} ${code}</td>
 <td data-label="Actions">
  <button class="edit-btn" data-id="${id}" aria-label="Edit ${name}">Edit</button>
  <button class="delete-btn" data-id="${id}" aria-label="Delete ${name}">Delete</button>
 
+</td>`
+}
+
+function editRow(rec) {
+const id = escapeHtml(rec.id);
+
+return`
+<td data-label="Date"><input type="text" id="edit-date" aria-label="Date" value="${escapeHtml(rec.date)}"></td>
+<td data-label="Description"><input type="text" id="edit-description" aria-label="Description" value="${escapeHtml(rec.description)}"></td>
+<td data-label="Category"><input type="text" id="edit-category" aria-label="Category" value="${escapeHtml(rec.category)}"></td>
+<td data-label="Amount (USD)"><input type="text" id="edit-amount" aria-label="Amount in USD" value="${escapeHtml(rec.amount)}"></td>
+<td data-label="Actions">
+<button class="save-btn" data-id="${id}">Save</button>
+<button class="cancel-btn" data-id="${id}">Cancel</button>
 </td>`;
 }
+
 
 export function renderTable(list,re) {
     document.querySelector("#converted-head").textContent=
     "Converted (" + state.settings.displayCurrency + ")";
 
-    tableBody.innerHtml = "";
+    tableBody.innerHTML = "";
 
     if (list.length ===0) {
 tableBody.innerHTML = '<tr><td colspan="6">No records found.</td></tr>';
@@ -43,7 +58,11 @@ tableBody.innerHTML = '<tr><td colspan="6">No records found.</td></tr>';
 for ( const rec of list) {
     const row = document.createElement("tr");
     if (rec.id === state.editingId) {
-        row.innerHtml = editRow(rec, re);
+        row.innerHTML = editRow(rec, re);
+
+    } else {
+        row.innerHTML = normalRow(rec, re);
+
     }
     tableBody.appendChild(row);
 }
@@ -55,6 +74,8 @@ function dateKey(date) {
     const d = String(date.getDate()).padStart(2, "0");
     return y + "-" + m + "-" + d;
 }
+
+
  export function renderStats() {
     const records = state.records;
 
@@ -73,7 +94,7 @@ function dateKey(date) {
         }
     }
 
-    document.quetSelector("#stat-count").textContent = records.length;
+    document.querySelector("#stat-count").textContent = records.length;
     document.querySelector("#stat-sum").textContent = total.toFixed(2);
     document.querySelector("#stat-top").textContent = topName;
 
@@ -87,9 +108,9 @@ function dateKey(date) {
  
 
  if (left >= 0) {
-    polite.textContent = "You are under your cap."  + left.toFixed(2) + " USD remaining.";
+    polite.textContent = "You are under your cap. "  + left.toFixed(2) + " USD remaining.";
  }else{
-    alertBox.textContent = "You are over your cap by" + Math.abs(left).toFixed(2) + "USD!";
+    alertBox.textContent = "You are over your cap by " + Math.abs(left).toFixed(2) + " USD!";
  }
 
  const days =[];
@@ -97,7 +118,7 @@ function dateKey(date) {
  for (let i =6; i>=0; i--) {
     const day = new Date();
     day.setDate(day.getDate() - i);
-    const key = datakey(day);
+    const key = dateKey(day);
 
     let dayTotal = 0;
     for (const r of records) {
@@ -108,7 +129,7 @@ function dateKey(date) {
  if (dayTotal > biggest) {
     biggest = dayTotal;
  }
- days.push({ label: key.slice(5), amount: daytotal });
+ days.push({ label: key.slice(5), amount: dayTotal });
 }
 
 let html = "";
@@ -123,5 +144,5 @@ html += `<div class="trend-col">
 <span>${d.label}</span>
 </div>`;
 }
-document.querySelector("#trend").innerHtml = html;
+document.querySelector("#trend").innerHTML = html;
  }
