@@ -51,7 +51,7 @@ export function isValidRecord(r) {
       return true;
 }
 
-export function isValiData(data){
+export function isValidData(data){
     if(!Array.isArray(data)) return false;
     for (const r of data) {
         if(!isValidRecord(r)) return false;
