@@ -2,7 +2,7 @@
 
 **Theme:** Student Finance Tracker
 **Live site:** https://nagasaro1-afk.github.io/summative/
-**Demo video:** (paste unlisted link here)
+**Demo video:** (https://www.youtube.com/watch?v=C3yMe46-IE8)
 
 Made by AGASARO NICIA GRETA - GitHub: nagasaro1-afk - n.agasaro1@alustudent.com
 
