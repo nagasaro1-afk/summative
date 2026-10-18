@@ -34,8 +34,9 @@ const id = escapeHtml(rec.id);
 return`
 <td data-label="Date"><input type="text" id="edit-date" aria-label="Date" value="${escapeHtml(rec.date)}"></td>
 <td data-label="Description"><input type="text" id="edit-description" aria-label="Description" value="${escapeHtml(rec.description)}"></td>
-<td data-label="Category"><input type="text" id="edit-category" aria-label="Category" value="${escapeHtml(rec.category)}"></td>
+<td data-label="Category"><input type="text" id="edit-category" list="category-list" aria-label="Category" value="${escapeHtml(rec.category)}"></td>
 <td data-label="Amount (USD)"><input type="text" id="edit-amount" aria-label="Amount in USD" value="${escapeHtml(rec.amount)}"></td>
+<td data-label="Converted">-</td>
 <td data-label="Actions">
 <button class="save-btn" data-id="${id}">Save</button>
 <button class="cancel-btn" data-id="${id}">Cancel</button>
